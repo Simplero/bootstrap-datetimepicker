@@ -193,7 +193,9 @@ THE SOFTWARE.
             update();
             showMode();
             attachDatePickerEvents();
-            if (picker.options.defaultDate !== "" && getPickerInput().val() == "") picker.setValue(picker.options.defaultDate);
+            if (picker.options.defaultDate !== "" && (getPickerInput().val() == "" || !getPickerInput().val())) {
+	        picker.setValue(picker.options.defaultDate);
+	    }
             if (picker.options.minuteStepping !== 1) {
                 var rInterval = picker.options.minuteStepping;
                 picker.date.minutes((Math.round(picker.date.minutes() / rInterval) * rInterval) % 60).seconds(0);
